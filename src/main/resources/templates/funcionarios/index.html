@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="sb-nav-fixed">
 <div th:replace="~{/fragments/header.html :: header}"></div>
@@ -21,16 +22,21 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Dashboard</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
+                <h1 class="mt-4">Cadastro de Funcionários</h1>
+
 
 
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        DataTable Example
+                        Listagem de Funcionários
+                        <a
+                                th:href="@{/funcionarios/form-inserir}"
+                                class="btn btn-primary"
+                                style="float: right"
+                        > Novo Funcionário</a>
+
+
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
@@ -40,6 +46,7 @@
                                 <th>Nome</th>
                                 <th>CPF</th>
                                 <th>Email</th>
+                                <th>Ações</th>
 
                             </tr>
                             </thead>
@@ -49,15 +56,37 @@
                                 <th>Nome</th>
                                 <th>CPF</th>
                                 <th>Email</th>
+                                <th>Ações</th>
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Giovana Raissa</td>
-                                <td>50403473837</td>
-                                <td>giilimafr@gmail.com</td>
+                            <!-- Recurso do Themyleaf. Verifica se a lista de alunos está vazia -->
+                            <tr th:if="${funcionarios.empty}">
+                                <td colspan="5">Nenhum registro encontrado</td>
                             </tr>
+
+                            <!-- Recurso do Themyleaf. Percorre a lista de alunos e preenche a tabela -->
+                            <tr th:each="funcionario : ${funcionarios}">
+                                <td><span th:text="${funcionario.id}"> id </span></td>
+                                <td><span th:text="${funcionario.nome}"> Nome </span></td>
+                                <td><span th:text="${funcionario.cpf}"> CPF </span></td>
+                                <td><span th:text="${funcionario.email}"> Email </span></td>
+                                <td>
+
+                                    <!-- Recurso do Themyleaf. Carrega o id do aluno para ser alterado -->
+                                    <a th:href="@{/funcionarios/alterar/{id}(id=${funcionario.id})}" class="edit" data-toggle="modal">
+                                        <i class="material-icons" data-toggle="tooltip" title="Alterar">&#xE254;</i>
+                                    </a>
+                                    <a th:href="@{/funcionarios/excluir/{id}(id=${funcionario.id})}"
+                                       th:data-confirm-delete="|Você gostaria de apagar ${funcionario.nome}?|"
+                                       onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
+                                       class="delete">
+                                        <i class="material-icons" data-toggle="tooltip" title="Excluir">&#xE872;</i>
+                                    </a>
+
+                                </td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
