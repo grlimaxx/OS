@@ -1,5 +1,7 @@
 package br.com.OS.controller;
 
+import br.com.OS.model.EnderecoPessoa;
+import br.com.OS.model.Funcionario;
 import br.com.OS.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,5 +20,11 @@ public class FuncionarioController {
     public String index(Model model){
         model.addAttribute("funcionarios", funcionarioRepository.findAll());
         return "funcionarios/index";
+    }
+
+    @GetMapping("/form-inserir")
+    public String formInserir(Model model){
+        model.addAttribute("Funcionario", new Funcionario());
+        return "funcionarios/form-inserir";
     }
 }
