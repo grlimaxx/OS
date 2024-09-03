@@ -41,7 +41,7 @@ public class FuncionarioController {
     }
 
     @PostMapping("/salvar")
-    public String inserir(
+    public String salvar(
             @Valid Funcionario funcionario,
             BindingResult result,
             RedirectAttributes redirectAttributes){
