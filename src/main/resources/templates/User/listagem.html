@@ -31,7 +31,7 @@
                         <i class="fas fa-table me-1"></i>
                         Listagem de Usuários
                         <a
-                                th:href="@{/usuarios/form-inserir}"
+                                th:href="@{/user/form-inserir}"
                                 class="btn btn-primary"
                                 style="float: right"
                         > Novo Usuário</a>
@@ -44,7 +44,6 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nome</th>
-                                <th>CPF</th>
                                 <th>Email</th>
                                 <th>Ações</th>
 
@@ -54,31 +53,29 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nome</th>
-                                <th>CPF</th>
                                 <th>Email</th>
                                 <th>Ações</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             <!-- Recurso do Themyleaf. Verifica se a lista de alunos está vazia -->
-                            <tr th:if="${funcionarios.empty}">
+                            <tr th:if="${usuarios.empty}">
                                 <td colspan="5">Nenhum registro encontrado</td>
                             </tr>
 
                             <!-- Recurso do Themyleaf. Percorre a lista de alunos e preenche a tabela -->
-                            <tr th:each="funcionario : ${funcionarios}">
-                                <td><span th:text="${funcionario.id}"> id </span></td>
-                                <td><span th:text="${funcionario.nome}"> Nome </span></td>
-                                <td><span th:text="${funcionario.cpf}"> CPF </span></td>
-                                <td><span th:text="${funcionario.email}"> Email </span></td>
+                            <tr th:each="usuario : ${usuarios}">
+                                <td><span th:text="${usuario.id}"> id </span></td>
+                                <td><span th:text="${usuario.firstName}"> Nome </span></td>
+                                <td><span th:text="${usuario.email}"> Email </span></td>
                                 <td>
 
                                     <!-- Recurso do Themyleaf. Carrega o id do aluno para ser alterado -->
-                                    <a th:href="@{/funcionarios/alterar/{id}(id=${funcionario.id})}" class="edit" data-toggle="modal">
+                                    <a th:href="@{/user/alterar/{id}(id=${usuario.id})}" class="edit" data-toggle="modal">
                                         <i class="material-icons" data-toggle="tooltip" title="Alterar">&#xE254;</i>
                                     </a>
-                                    <a th:href="@{/funcionarios/excluir/{id}(id=${funcionario.id})}"
-                                       th:data-confirm-delete="|Você gostaria de apagar ${funcionario.nome}?|"
+                                    <a th:href="@{/user/excluir/{id}(id=${usuario.id})}"
+                                       th:data-confirm-delete="|Você gostaria de apagar ${usuario.firstName}?|"
                                        onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
                                        class="delete">
                                         <i class="material-icons" data-toggle="tooltip" title="Excluir">&#xE872;</i>
