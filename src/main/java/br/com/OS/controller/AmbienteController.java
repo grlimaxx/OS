@@ -23,7 +23,8 @@ public class AmbienteController {
     @GetMapping
     public String index(Model model){
         model.addAttribute("ambientes", ambienteRepository.findAll());
-        return "ambientes/index";
+        //return "ambientes/index";
+        return "login";
     }
 
     @GetMapping("/form-inserir")
