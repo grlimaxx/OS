@@ -31,7 +31,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <form action="#" th:action="@{/user/salvar}" th:object="${usuario}" method="post">
+                                    <form action="#" th:action="@{/user/salvar}" th:object="${usuario}" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" th:field="*{id}">
                                         <div class="card-header">
                                             <div class="card-title">Dados do Usuário</div>
                                         </div>
@@ -45,7 +46,7 @@
                                                                 class="form-control"
                                                                 id="nome"
                                                                 placeholder="Informe o Nome do Usuário"
-                                                                th:field="*{firstname}"
+                                                                th:field="*{firstName}"
                                                         />
                                                     </div>
 
@@ -86,11 +87,11 @@
                                                     <div class="form-group">
                                                         <label for="foto">Foto</label>
                                                         <input
-                                                                type="foto"
+                                                                type="file"
                                                                 class="form-control"
                                                                 id="foto"
                                                                 placeholder="Adicione a foto"
-                                                                th:field="*{foto}"
+                                                               name="foto"
                                                         />
                                                     </div>
 
