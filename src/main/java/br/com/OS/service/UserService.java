@@ -1,4 +1,4 @@
-package br.com.OS.repository.service;
+package br.com.OS.service;
 
 import br.com.OS.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
