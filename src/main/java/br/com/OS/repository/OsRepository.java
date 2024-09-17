@@ -1,4 +1,9 @@
 package br.com.OS.repository;
 
-public interface OsRepository {
+import br.com.OS.model.Ambiente;
+import br.com.OS.model.EnderecoPessoa;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OsRepository extends JpaRepository<Ambiente, Long> {
 }
+

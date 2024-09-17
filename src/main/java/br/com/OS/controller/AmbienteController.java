@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,7 +25,7 @@ public class AmbienteController {
     public String index(Model model){
         model.addAttribute("ambientes", ambienteRepository.findAll());
         //return "ambientes/index";
-        return "login";
+        return "ambientes/index";
     }
 
     @GetMapping("/form-inserir")
@@ -48,6 +49,15 @@ public class AmbienteController {
 
 
         redirectAttributes.addFlashAttribute("mensagem", "Ambiente salvo com sucesso!");
+        return "redirect:/ambientes";
+    }
+
+    // Método para excluir o jogador
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        Ambiente ambiente = ambienteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Ambiente inválido: " + id));
+        ambienteRepository.delete(ambiente);
+        redirectAttributes.addFlashAttribute("mensagem", "Ambiente excluído com sucesso!");
         return "redirect:/ambientes";
     }
 }
