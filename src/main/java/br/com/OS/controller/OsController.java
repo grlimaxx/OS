@@ -1,6 +1,5 @@
 package br.com.OS.controller;
 
-import br.com.OS.model.Funcionario;
 import br.com.OS.model.OS;
 import br.com.OS.repository.OsRepository;
 import jakarta.validation.Valid;
@@ -23,13 +22,13 @@ public class OsController {
 
     @GetMapping
     public String index(Model model){
-        model.addAttribute("oss", osRepository.findAll());
+        model.addAttribute("OS", osRepository.findAll());
         return "os/index";
     }
 
     @GetMapping("/form-inserir")
     public String formInserir(Model model){
-        model.addAttribute("os", new OS());
+        model.addAttribute("OS", new OS());
         return "os/form-inserir";
     }
 
