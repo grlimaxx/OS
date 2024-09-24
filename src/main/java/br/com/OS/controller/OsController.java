@@ -1,8 +1,8 @@
 package br.com.OS.controller;
 
-import br.com.OS.model.EnderecoPessoa;
 import br.com.OS.model.Funcionario;
-import br.com.OS.repository.FuncionarioRepository;
+import br.com.OS.model.OS;
+import br.com.OS.repository.OsRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,45 +15,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/OS")
+@RequestMapping("/os")
 public class OsController {
 
     @Autowired
-    private FuncionarioRepository funcionarioRepository;
+    private OsRepository osRepository;
 
     @GetMapping
     public String index(Model model){
-        model.addAttribute("OS", funcionarioRepository.findAll());
-        return "OS/index";
+        model.addAttribute("oss", osRepository.findAll());
+        return "os/index";
     }
 
     @GetMapping("/form-inserir")
     public String formInserir(Model model){
-        model.addAttribute("OS", new Funcionario());
-        return "OS/form-inserir";
+        model.addAttribute("os", new OS());
+        return "os/form-inserir";
     }
 
     @GetMapping("/alterar/{id}")
     public String formAlterar(@PathVariable("id") Long id,Model model){
-        Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Funcionário inválido: " + id));
-        model.addAttribute("OS", funcionario);
-        return "OS/form-alterar";
+        OS os = osRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Funcionário inválido: " + id));
+        model.addAttribute("OS", os);
+        return "os/form-alterar";
     }
 
     @PostMapping("/salvar")
     public String salvar(
-            @Valid Funcionario funcionario,
+            @Valid OS os,
             BindingResult result,
             RedirectAttributes redirectAttributes){
 
         // Verifica se há erros de validação
         if(result.hasErrors()){
-            return "OS/form-inserir";
+            return "os/form-inserir";
         }
 
-        funcionarioRepository.save(funcionario);
+        osRepository.save(os);
         redirectAttributes.addFlashAttribute("mensagem", "OS salvo com sucesso!");
-        return "redirect:/OS";
+        return "redirect:/os";
     }
 
 
@@ -61,10 +61,10 @@ public class OsController {
     // Método para excluir o jogador
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-        Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Ordem de serviço inválida: " + id));
-        funcionarioRepository.delete(funcionario);
+        OS os = osRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Ordem de serviço inválida: " + id));
+        osRepository.delete(os);
         redirectAttributes.addFlashAttribute("mensagem", "Ordem de serviço excluída com sucesso!");
-        return "redirect:/OS";
+        return "redirect:/os";
     }
 
 
