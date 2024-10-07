@@ -57,16 +57,17 @@
 
                             <tbody>
                             <!-- Recurso do Themyleaf. Verifica se a lista de alunos está vazia -->
-                            <tr th:if="${oss.empty}">
+                            <tr th:if="${OS.empty}">
                                 <td colspan="5">Nenhum registro encontrado</td>
                             </tr>
 
                             <!-- Recurso do Themyleaf. Percorre a lista de alunos e preenche a tabela -->
-                            <tr th:each="os : ${oss}">
-                                <td><span th:text="${os.id}"> id </span></td>
-                                <td><span th:text="${os.funcionario}"> Nome </span></td>
-                                <td><span th:text="${os.descricao}"> CPF </span></td>
-                                <td><span th:text="${os.data}"> Email </span></td>
+                            <tr th:each="os : ${OS}">
+                                <td><span th:text="${os.funcionario}"> Funcionário </span></td>
+                                <td><span th:text="${os.data}"> Data </span></td>
+                                <td><span th:text="${os.ambiente}"> Ambiente </span></td>
+                                <td><span th:text="${os.descricao}"> Descrição </span></td>
+                                <td><span th:text="${os.imagem}"> Imagem </span></td>
                                 <td>
 
                                     <!-- Recurso do Themyleaf. Carrega o id do aluno para ser alterado -->
@@ -74,7 +75,7 @@
                                         <i class="material-icons" data-toggle="tooltip" title="Alterar">&#xE254;</i>
                                     </a>
                                     <a th:href="@{/os/excluir/{id}(id=${os.id})}"
-                                       th:data-confirm-delete="|Você gostaria de apagar ${funcionario.nome}?|"
+                                       th:data-confirm-delete="|Você gostaria de apagar ${os.descricao}?|"
                                        onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
                                        class="delete">
                                         <i class="material-icons" data-toggle="tooltip" title="Excluir">&#xE872;</i>

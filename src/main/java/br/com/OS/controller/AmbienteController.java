@@ -34,6 +34,13 @@ public class AmbienteController {
         return "ambientes/form-inserir";
     }
 
+    @GetMapping("/alterar/{id}")
+    public String formAlterar(@PathVariable("id") Long id,Model model){
+        Ambiente ambiente = ambienteRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Ambiente inválido: " + id));
+        model.addAttribute("ambiente", ambiente);
+        return "ambientes/form-alterar";
+    }
+
     @PostMapping("/salvar")
     public String salvar(
             @Valid Ambiente ambiente,

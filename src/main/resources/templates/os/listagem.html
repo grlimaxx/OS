@@ -22,24 +22,19 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Cadastro de Funcionários</h1>
+                <h1 class="mt-4">Cadastro das Ordens de Serviço</h1>
 
-                <!-- Mensagem carregada após a alteração ou exclusão dos dados-->
-                <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    <span th:text="${mensagem}"></span>
-                </div>
 
 
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Listagem de Funcionários
+                        Listagem de OS
                         <a
-                                th:href="@{/funcionarios/form-inserir}"
+                                th:href="@{/os/form-inserir}"
                                 class="btn btn-primary"
                                 style="float: right"
-                        > Novo Funcionário</a>
+                        > Nova Ordem de Serviço</a>
 
 
                     </div>
@@ -47,43 +42,46 @@
                         <table id="datatablesSimple">
                             <thead>
                             <tr>
-                                <th>Id</th>
-                                <th>Nome</th>
-                                <th>CPF</th>
-                                <th>Email</th>
-                                <th>Ações</th>
+                                <th>Funcionário</th>
+                                <th>Data</th>
+                                <th>Ambiente</th>
+                                <th>Descrição</th>
+                                <th>Imagem</th>
 
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Id</th>
-                                <th>Nome</th>
-                                <th>CPF</th>
-                                <th>Email</th>
-                                <th>Ações</th>
+                                <th>Funcionário</th>
+                                <th>Data</th>
+                                <th>Ambiente</th>
+                                <th>Descrição</th>
+                                <th>Imagem</th>
                             </tr>
                             </tfoot>
                             <tbody>
                             <!-- Recurso do Themyleaf. Verifica se a lista de alunos está vazia -->
-                            <tr th:if="${funcionarios.empty}">
+                            <tr th:if="${os.empty}">
                                 <td colspan="5">Nenhum registro encontrado</td>
                             </tr>
 
                             <!-- Recurso do Themyleaf. Percorre a lista de alunos e preenche a tabela -->
-                            <tr th:each="funcionario : ${funcionarios}">
-                                <td><span th:text="${funcionario.id}"> id </span></td>
-                                <td><span th:text="${funcionario.nome}"> Nome </span></td>
-                                <td><span th:text="${funcionario.cpf}"> CPF </span></td>
-                                <td><span th:text="${funcionario.email}"> Email </span></td>
+                            <tr th:each="os : ${os}">
+                                <td><span th:text="${os.funcionario}"> Funcionário </span></td>
+                                <td><span th:text="${os.data}"> Data </span></td>
+                                <td><span th:text="${os.ambiente}"> Ambiente </span></td>
+                                <td><span th:text="${os.descricao}"> Descrição </span></td>
+                                <td><img class="imagem-modal" th:src="@{/assets/img/fotos-usuarios/{image}(image=${usuario.image})}" alt="Descrição da imagem" style="height: 100px"></td>
                                 <td>
 
+
+
                                     <!-- Recurso do Themyleaf. Carrega o id do aluno para ser alterado -->
-                                    <a th:href="@{/funcionarios/alterar/{id}(id=${funcionario.id})}" class="edit" data-toggle="modal">
+                                    <a th:href="@{/os/form-alterar/{id}(id=${os.id})}" class="edit" data-toggle="modal">
                                         <i class="material-icons" data-toggle="tooltip" title="Alterar">&#xE254;</i>
                                     </a>
-                                    <a th:href="@{/funcionarios/excluir/{id}(id=${funcionario.id})}"
-                                       th:data-confirm-delete="|Você gostaria de apagar ${funcionario.nome}?|"
+                                    <a th:href="@{/os/excluir/{id}(id=${os.id})}"
+                                       th:data-confirm-delete="|Você gostaria de apagar ${os.firstName}?|"
                                        onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
                                        class="delete">
                                         <i class="material-icons" data-toggle="tooltip" title="Excluir">&#xE872;</i>
