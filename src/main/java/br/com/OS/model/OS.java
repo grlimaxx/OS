@@ -1,5 +1,7 @@
 package br.com.OS.model;
 
+import br.com.OS.enums.EnumPrioridade;
+import br.com.OS.enums.EnumStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +22,8 @@ public class OS {
     private String data;
     private String ambiente;
     private String imagem;
+    private EnumStatus status;
+    private EnumPrioridade prioridade;
 
 }
 
