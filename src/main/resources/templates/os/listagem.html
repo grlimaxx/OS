@@ -24,7 +24,11 @@
             <div class="container-fluid px-4">
                 <h1 class="mt-4">Cadastro das Ordens de Serviço</h1>
 
-
+                <!-- Mensagem carregada após a alteração ou exclusão dos dados-->
+                <div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <span th:text="${mensagem}"></span>
+                </div>
 
                 <div class="card mb-4">
                     <div class="card-header">
@@ -50,15 +54,7 @@
 
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr>
-                                <th>Funcionário</th>
-                                <th>Data</th>
-                                <th>Ambiente</th>
-                                <th>Descrição</th>
-                                <th>Imagem</th>
-                            </tr>
-                            </tfoot>
+
                             <tbody>
                             <!-- Recurso do Themyleaf. Verifica se a lista de alunos está vazia -->
                             <tr th:if="${os.empty}">
@@ -80,6 +76,7 @@
                                     <a th:href="@{/os/form-alterar/{id}(id=${os.id})}" class="edit" data-toggle="modal">
                                         <i class="material-icons" data-toggle="tooltip" title="Alterar">&#xE254;</i>
                                     </a>
+
                                     <a th:href="@{/os/excluir/{id}(id=${os.id})}"
                                        th:data-confirm-delete="|Você gostaria de apagar ${os.firstName}?|"
                                        onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"

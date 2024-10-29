@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +21,11 @@ public class OS {
     private Long id;
     private String funcionario;
     private String descricao;
-    private String data;
+
+    @Basic
+    @Temporal(TemporalType.DATE)
+    private Date data;
+
     private String ambiente;
     private String imagem;
     private EnumStatus status;

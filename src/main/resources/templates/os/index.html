@@ -48,8 +48,10 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Funcionário</th>
-                                <th>Descrição</th>
                                 <th>Data</th>
+                                <th>Ambiente</th>
+                                <th>Descrição</th>
+                                <th>Imagem</th>
                                 <th>Ações</th>
 
                             </tr>
@@ -63,11 +65,15 @@
 
                             <!-- Recurso do Themyleaf. Percorre a lista de alunos e preenche a tabela -->
                             <tr th:each="os : ${OS}">
+                                <td><span th:text="${os.id}"> Id </span></td>
                                 <td><span th:text="${os.funcionario}"> Funcionário </span></td>
-                                <td><span th:text="${os.data}"> Data </span></td>
+                                <td><span th:text="${#dates.format(os.data, 'dd/MM/yyyy')}"> Data</span></td>
                                 <td><span th:text="${os.ambiente}"> Ambiente </span></td>
                                 <td><span th:text="${os.descricao}"> Descrição </span></td>
-                                <td><span th:text="${os.imagem}"> Imagem </span></td>
+                                <td>
+                                    <img class="imagem-modal" th:src="@{/assets/img/fotos-os/{image}(image=${os.imagem})}" alt="Descrição da imagem" style="height: 100px">
+
+                                </td>
                                 <td>
 
                                     <!-- Recurso do Themyleaf. Carrega o id do aluno para ser alterado -->
@@ -106,3 +112,4 @@
 <script src="js/datatables-simple-demo.js"></script>
 </body>
 </html>
+
