@@ -24,7 +24,7 @@ public class OS {
 
     @Basic
     @Temporal(TemporalType.DATE)
-    private Date data;
+    private Date dataCadastro;
 
     private String ambiente;
     private String imagem;

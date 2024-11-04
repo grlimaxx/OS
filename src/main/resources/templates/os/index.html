@@ -67,7 +67,7 @@
                             <tr th:each="os : ${OS}">
                                 <td><span th:text="${os.id}"> Id </span></td>
                                 <td><span th:text="${os.funcionario}"> Funcionário </span></td>
-                                <td><span th:text="${#dates.format(os.data, 'dd/MM/yyyy')}"> Data</span></td>
+                                <td><span th:text="${#dates.format(os.dataCadastro, 'dd/MM/yyyy')}"> Data</span></td>
                                 <td><span th:text="${os.ambiente}"> Ambiente </span></td>
                                 <td><span th:text="${os.descricao}"> Descrição </span></td>
                                 <td>

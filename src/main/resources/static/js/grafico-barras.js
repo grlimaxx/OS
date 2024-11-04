@@ -4,7 +4,7 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
-var myLineChart = new Chart(ctx, {
+var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set","Out", "Nov", "Dez"],
@@ -25,13 +25,13 @@ var myLineChart = new Chart(ctx, {
           display: false
         },
         ticks: {
-          maxTicksLimit: 6
+          maxTicksLimit: 12
         }
       }],
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
+          max: 150,
           maxTicksLimit: 5
         },
         gridLines: {
@@ -44,3 +44,13 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+function loadBarChart() {
+  fetch("/api/servicos/servicos-ano-corrente")
+      .then((response) => response.json())
+      .then((data) => {
+        myBarChart.data.datasets[0].data = data;
+        myBarChart.update();
+      });
+}
+
+loadBarChart();
