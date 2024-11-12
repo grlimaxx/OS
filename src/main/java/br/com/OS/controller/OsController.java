@@ -63,7 +63,7 @@ public class OsController {
 
         String extensao = StringUtils.getFilenameExtension(multipartFile.getOriginalFilename());
 
-        os.setData(new Date());
+        os.setDataCadastro(new Date());
         os.setFuncionario(user.getFirstName());
 
         osRepository.save(os);

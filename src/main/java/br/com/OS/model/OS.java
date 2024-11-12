@@ -24,7 +24,7 @@ public class OS {
 
     @Basic
     @Temporal(TemporalType.DATE)
-    private Date data;
+    private Date dataCadastro;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Ambiente ambiente;
