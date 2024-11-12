@@ -26,7 +26,8 @@ public class OS {
     @Temporal(TemporalType.DATE)
     private Date data;
 
-    private String ambiente;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Ambiente ambiente;
     private String imagem;
     private EnumStatus status;
     private EnumPrioridade prioridade;

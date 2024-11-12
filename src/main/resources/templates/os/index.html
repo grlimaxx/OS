@@ -68,7 +68,7 @@
                                 <td><span th:text="${os.id}"> Id </span></td>
                                 <td><span th:text="${os.funcionario}"> Funcionário </span></td>
                                 <td><span th:text="${#dates.format(os.data, 'dd/MM/yyyy')}"> Data</span></td>
-                                <td><span th:text="${os.ambiente}"> Ambiente </span></td>
+                                <td><span th:text="${os.ambiente.descricao}"> Ambiente </span></td>
                                 <td><span th:text="${os.descricao}"> Descrição </span></td>
                                 <td>
                                     <img class="imagem-modal" th:src="@{/assets/img/fotos-os/{image}(image=${os.imagem})}" alt="Descrição da imagem" style="height: 100px">

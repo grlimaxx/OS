@@ -9,7 +9,7 @@ var myLineChart = new Chart(ctx, {
   data: {
     labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set","Out", "Nov", "Dez"],
     datasets: [{
-      label: "Sessions",
+      label: "Serviços",
       lineTension: 0.3,
       backgroundColor: "rgba(2,117,216,0.2)",
       borderColor: "rgba(2,117,216,1)",
@@ -33,13 +33,13 @@ var myLineChart = new Chart(ctx, {
           display: false
         },
         ticks: {
-          maxTicksLimit: 7
+          maxTicksLimit: 12
         }
       }],
       yAxes: [{
         ticks: {
           min: 0,
-          max: 40000,
+          max: 100,
           maxTicksLimit: 5
         },
         gridLines: {
@@ -52,3 +52,15 @@ var myLineChart = new Chart(ctx, {
     }
   }
 });
+
+
+function loadLineChart() {
+  fetch("/api/servicos/servicos-ano-corrente")
+      .then((response) => response.json())
+      .then((data) => {
+        myLineChart.data.datasets[0].data = data;
+        myLineChart.update();
+      });
+}
+
+loadLineChart();

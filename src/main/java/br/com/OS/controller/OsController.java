@@ -2,6 +2,7 @@ package br.com.OS.controller;
 
 import br.com.OS.model.OS;
 import br.com.OS.model.User;
+import br.com.OS.repository.AmbienteRepository;
 import br.com.OS.repository.OsRepository;
 import br.com.OS.util.FileUploadUtil;
 import jakarta.validation.Valid;
@@ -25,6 +26,9 @@ public class OsController {
     @Autowired
     private OsRepository osRepository;
 
+    @Autowired
+    private AmbienteRepository ambienteRepository;
+
     @GetMapping
     public String index(Model model){
         model.addAttribute("OS", osRepository.findAll());
@@ -33,6 +37,7 @@ public class OsController {
 
     @GetMapping("/form-inserir")
     public String formInserir(Model model){
+        model.addAttribute("ambientes",ambienteRepository.findAll());
         model.addAttribute("OS", new OS());
         return "os/form-inserir";
     }

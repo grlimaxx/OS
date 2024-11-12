@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,6 +18,8 @@ public class Ambiente {
     @Column(name = "id", unique=true)
     private Long id;
     private String descricao;
+    @OneToMany(mappedBy = "ambiente")
+    private List<OS> servicos;
 
 
 
